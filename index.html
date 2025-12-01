@@ -132,6 +132,15 @@
       background: rgba(15, 23, 42, 0.9);
     }
 
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding-inline: 14px;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
     /* HERO */
 
     .hero {
@@ -344,15 +353,43 @@
       padding-top: 8px;
     }
 
-    /* SECTIONS */
+    /* SECTIONS – upgraded look */
 
     .section {
       margin-top: 26px;
-      padding: 18px 16px 18px;
+      padding: 20px 18px 20px;
       border-radius: 22px;
-      background: rgba(15, 23, 42, 0.94);
+      background: radial-gradient(
+        circle at top left,
+        rgba(79, 70, 229, 0.18),
+        #020617 45%,
+        #020617 100%
+      );
       border: 1px solid rgba(31, 41, 55, 0.95);
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-top: 1px solid rgba(129, 140, 248, 0.9);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .section:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.9);
+    }
+
+    .section > * {
+      position: relative;
+      z-index: 1;
     }
 
     .section-header {
@@ -366,6 +403,18 @@
     .section-title {
       font-size: 15px;
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #a5b4fc, #4f46e5);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.25);
     }
 
     .section-kicker {
@@ -379,21 +428,57 @@
       line-height: 1.6;
     }
 
-    /* EXPERIENCE GRID */
+    /* EXPERIENCE GRID / PROJECTS / SKILLS / CERTS – upgraded cards */
 
     .exp-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
     }
 
-    .exp-card {
-      background: #020617;
+    .exp-card,
+    .proj-card,
+    .skills-group,
+    .cert-item {
+      background: linear-gradient(145deg, #020617, #020617 55%, #020617);
       border-radius: 18px;
       border: 1px solid rgba(31, 41, 55, 0.95);
       padding: 12px 12px 13px;
       display: grid;
       gap: 6px;
+      position: relative;
+      overflow: hidden;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .exp-card::before,
+    .proj-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border-top: 2px solid rgba(129, 140, 248, 0.9);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .exp-card:hover,
+    .proj-card:hover,
+    .skills-group:hover,
+    .cert-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95);
+      border-color: rgba(79, 70, 229, 0.9);
+      background: radial-gradient(
+        circle at top left,
+        rgba(79, 70, 229, 0.22),
+        #020617 55%,
+        #020617 100%
+      );
     }
 
     .exp-role {
@@ -408,7 +493,7 @@
     }
 
     .exp-list {
-      margin: 0;
+      margin: 4px 0 0;
       padding-left: 16px;
       font-size: 12px;
       color: var(--muted);
@@ -418,21 +503,10 @@
       margin-bottom: 4px;
     }
 
-    /* PROJECTS */
-
     .proj-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
-    }
-
-    .proj-card {
-      background: #020617;
-      border-radius: 18px;
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      padding: 12px 12px 13px;
-      display: grid;
-      gap: 6px;
+      gap: 16px;
     }
 
     .proj-title {
@@ -462,20 +536,11 @@
       color: var(--muted);
     }
 
-    /* SKILLS GRID */
-
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 12px;
+      gap: 14px;
       font-size: 12px;
-    }
-
-    .skills-group {
-      background: #020617;
-      border-radius: 16px;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 10px 11px 11px;
     }
 
     .skills-group-title {
@@ -491,21 +556,12 @@
       gap: 6px;
     }
 
-    /* CERTS */
-
     .cert-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 10px;
+      gap: 12px;
       font-size: 12px;
       color: var(--muted);
-    }
-
-    .cert-item {
-      padding: 8px 9px;
-      border-radius: 14px;
-      background: #020617;
-      border: 1px solid rgba(31, 41, 55, 0.95);
     }
 
     .cert-name {
@@ -519,7 +575,7 @@
       color: var(--muted);
     }
 
-    /* CONTACT */
+    /* CONTACT / FOOTER */
 
     .contact-actions {
       display: flex;
@@ -551,17 +607,11 @@
     }
 
     @media (max-width: 640px) {
-      .nav-inner {
-        padding-inline: 14px;
-      }
       .shell {
         padding-inline: 14px;
       }
       .section {
         padding-inline: 12px;
-      }
-      .nav-links {
-        display: none;
       }
     }
   </style>
@@ -613,8 +663,7 @@
             <span class="tag">Learning DevOps & Cloud</span>
           </div>
           <div class="hero-actions">
-            <!-- TODO: replace email with your real email -->
-            <a href="mailto:your.email@example.com" class="btn-primary">
+            <a href="mailto:arora22122000@gmail.com" class="btn-primary">
               📩 Email for opportunities
             </a>
             <a href="https://www.linkedin.com/in/tushar-arora-925434210/"
@@ -671,7 +720,7 @@
       <!-- ABOUT -->
       <section id="about" class="section">
         <div class="section-header">
-          <h2 class="section-title">About</h2>
+          <h2 class="section-title">About 💫</h2>
           <span class="section-kicker">Who I am & what I’m building towards</span>
         </div>
         <div class="section-body">
@@ -702,7 +751,7 @@
       <!-- EXPERIENCE -->
       <section id="experience" class="section">
         <div class="section-header">
-          <h2 class="section-title">Experience</h2>
+          <h2 class="section-title">Experience 💼</h2>
           <span class="section-kicker">Wipro, Decimal & key contributions</span>
         </div>
         <div class="section-body">
@@ -763,7 +812,7 @@
       <!-- PROJECTS -->
       <section id="projects" class="section">
         <div class="section-header">
-          <h2 class="section-title">Projects</h2>
+          <h2 class="section-title">Projects 🚀</h2>
           <span class="section-kicker">A few things I’ve built & explored</span>
         </div>
         <div class="section-body">
@@ -815,7 +864,7 @@
               <div class="proj-title">Other Small Projects</div>
               <div class="proj-tagline">
                 Smaller experiments including a calculator app, test-generation tools
-                and basic servers from your early learning phase.
+                and basic servers from my early learning phase.
               </div>
               <div class="proj-skills">
                 <span class="pill">JavaScript</span>
@@ -830,7 +879,7 @@
       <!-- SKILLS -->
       <section id="skills" class="section">
         <div class="section-header">
-          <h2 class="section-title">Skills</h2>
+          <h2 class="section-title">Skills 🧠</h2>
           <span class="section-kicker">Tech I use & am growing in</span>
         </div>
         <div class="section-body">
@@ -887,7 +936,7 @@
       <!-- CERTIFICATIONS -->
       <section class="section">
         <div class="section-header">
-          <h2 class="section-title">Certifications & Programs</h2>
+          <h2 class="section-title">Certifications & Programs 🎓</h2>
           <span class="section-kicker">Proof of structured learning</span>
         </div>
         <div class="section-body">
@@ -927,13 +976,12 @@
       <!-- CONTACT -->
       <section id="contact" class="section">
         <div class="section-header">
-          <h2 class="section-title">Contact</h2>
+          <h2 class="section-title">Contact 🤝</h2>
           <span class="section-kicker">Let’s talk about Cloud / DevOps / IAM</span>
         </div>
         <div class="section-body">
           <div class="contact-actions">
-            <!-- TODO: replace email with your real email -->
-            <a href="mailto:your.email@example.com" class="btn-primary">
+            <a href="mailto:arora22122000@gmail.com" class="btn-primary">
               📩 Email me
             </a>
             <a
